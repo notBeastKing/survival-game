@@ -1,0 +1,61 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcxmk77hyfev8"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_hbxw7"]
+[ext_resource type="FontFile" uid="uid://cvt3h3oby33g" path="res://fonts/Xolonium-Regular.ttf" id="2_pry4h"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_hbxw7")
+
+[node name="Scorelabel" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 78.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_pry4h")
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="message" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -39.0
+offset_right = 220.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("2_pry4h")
+theme_override_font_sizes/font_size = 64
+text = "GAME OVER"
+autowrap_mode = 2
+
+[node name="start button" type="Button" parent="."]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -121.5
+offset_top = -220.0
+offset_right = 121.5
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_pry4h")
+theme_override_font_sizes/font_size = 64
+text = "START"
+
+[node name="message timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="pressed" from="start button" to="." method="_on_start_button_pressed"]
+[connection signal="timeout" from="message timer" to="." method="_on_message_timer_timeout"]

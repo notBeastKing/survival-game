@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://bjkk2pl0vk43w"]
+
+[ext_resource type="Texture2D" uid="uid://7tmvdm851fbr" path="res://art/playerGrey_up1.png" id="1_s2vtm"]
+[ext_resource type="Script" path="res://player_node.gd" id="1_uvubv"]
+[ext_resource type="Texture2D" uid="uid://dstf3t8gqk2x2" path="res://art/playerGrey_walk2.png" id="2_v5jr6"]
+[ext_resource type="Texture2D" uid="uid://d2tgee6lea66r" path="res://art/playerGrey_up2.png" id="3_lp4gm"]
+[ext_resource type="Texture2D" uid="uid://7toqre57ys4f" path="res://art/playerGrey_walk1.png" id="4_4xqj0"]
+[ext_resource type="Texture2D" uid="uid://dv7nawqayff1m" path="res://art/still2.png" id="4_f234l"]
+[ext_resource type="Texture2D" uid="uid://clg25oieub1dg" path="res://art/still1.png" id="5_o5mqx"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hdvu7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s2vtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4xqj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f234l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_o5mqx")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s2vtm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lp4gm")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4xqj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_v5jr6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_our62"]
+radius = 26.0
+height = 68.0
+
+[node name="Player node" type="Area2D"]
+position = Vector2(0, 10)
+script = ExtResource("1_uvubv")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_hdvu7")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_our62")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
